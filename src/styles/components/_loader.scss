@@ -1,0 +1,20 @@
+@use "../abstract" as var;
+
+.loader {
+  top: 20%;
+  right: 1%;
+  opacity: 0;
+  z-index: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  border: 2px solid transparent;
+  animation: spin 2s linear infinite;
+  border-top: 2px solid rgb(var.$color-light);
+
+  &--visible {
+    opacity: 1;
+  }
+}

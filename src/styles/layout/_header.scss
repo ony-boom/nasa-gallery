@@ -1,6 +1,8 @@
 @use "../abstract" as var;
 
 .header {
+  top: 0;
+  position: sticky;
   padding-block: 3.2rem;
 }
 
@@ -17,6 +19,7 @@
     &__button {
       top: 50%;
       right: 0;
+      z-index: 10;
       border: none;
       outline: none;
       color: inherit;
@@ -24,6 +27,11 @@
       transition: color .3s;
       transform: translateY(-50%);
       background-color: transparent;
+
+      &--hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
 
       &:not(:disabled) {
         cursor: pointer;
