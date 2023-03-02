@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@1"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.scss" />
+    <title>Nasa Gallery</title>
+  </head>
+  <body>
+    <main>
+      <header class="header">
+        <div class="row">
+          <nav class="navigation">
+            <h1><span class="navigation--brand">NASA</span> Gallery</h1>
+
+            <form action="" class="navigation__search" autocomplete="off" id="search-form">
+              <label class="navigation__search__input">
+                <input
+                  autocomplete="off"
+                  id="search"
+                  type="text"
+                  placeholder="Search for resources, eg: Moon landing"
+                  name="query"
+                />
+              </label>
+
+              <button
+                type="submit"
+                class="navigation__search__button"
+                id="search-btn"
+                disabled
+              >
+                <i data-feather="search"></i>
+              </button>
+            </form>
+          </nav>
+        </div>
+      </header>
+    </main>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script type="module" src="/src/scripts/main.ts"></script>
+
+    <script>
+      feather.replace();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+@use "../abstract" as var;
+
+form input {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  padding: .8rem 0;
+  border-style: none;
+  outline-color: transparent;
+  background-color: transparent;
+  transition: border-bottom-color .3s;
+  border-bottom: var.$component-border;
+
+
+  &:focus {
+    outline: none;
+    border-color: rgba(rgb(var.$color-light), .5);
+
+    &:not(:placeholder-shown) {
+      border-color: rgba(rgb(var.$color-light), 1);
+    }
+  }
+}

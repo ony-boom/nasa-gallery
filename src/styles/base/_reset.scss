@@ -1,0 +1,30 @@
+@use "../abstract" as var;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  min-height: 100vh;
+  font-family: var.$ff-main;
+  color: rgb(var.$color-light);
+  background-color: rgb(var.$color-dark);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.row {
+  width: 92%;
+  margin: 0 auto;
+  max-width: 153.6rem;
+}
+
