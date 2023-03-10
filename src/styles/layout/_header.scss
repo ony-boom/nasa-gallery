@@ -2,8 +2,12 @@
 
 .header {
   top: 0;
+  z-index: 20;
   position: sticky;
   padding-block: 3.2rem;
+  max-height: 120rem;
+  backdrop-filter: blur(10px) saturate(50%);
+  background: linear-gradient(180deg, rgba(5, 5, 5), rgba(5, 5, 5, .6));
 }
 
 .navigation {

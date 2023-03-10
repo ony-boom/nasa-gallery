@@ -1,4 +1,5 @@
 const USER_SEARCH_LIST_LOCALE_STORAGE_KEY = "default_nasa_api";
+
 const defaultSearchList = [
   "Earth",
   "solar system",
@@ -27,3 +28,9 @@ function getDefaultSearchList() {
 }
 
 export const searchList = getDefaultSearchList();
+export const MAX_ROW_IMAGE_COUNT = 2;
+
+export const userLocale =
+  navigator.languages && navigator.languages.length
+    ? navigator.languages[0]
+    : navigator.language;

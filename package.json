@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/feather-icons": "^4.29.1",
     "@types/node": "^18.14.2",
     "sass": "^1.58.3",
     "typescript": "^4.9.3",
     "vite": "^4.1.0"
   },
   "dependencies": {
+    "feather-icons": "^4.29.0",
     "prettier": "^2.8.4",
     "wretch": "^2.5.1"
   }

@@ -18,3 +18,16 @@
     opacity: 1;
   }
 }
+
+.big-loader {
+  top: 50%;
+  left: 50%;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  border: 2px solid rgba(rgb(var.$color-light), .1);
+  animation: spin 2s linear infinite;
+  border-top: 2px solid rgb(var.$color-light);
+}

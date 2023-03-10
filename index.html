@@ -9,16 +9,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/src/styles/main.scss" />
-    <title>Nasa Gallery</title>
+    <title>Nasa's Gallery</title>
   </head>
   <body>
     <main>
       <header class="header">
         <div class="row">
           <nav class="navigation">
-            <h1><span class="navigation--brand">NASA</span> Gallery</h1>
+            <h1><span class="navigation--brand">NASA'S</span> Gallery</h1>
 
-            <form action="" class="navigation__search" autocomplete="off" id="search-form">
+            <form
+              action=""
+              class="navigation__search"
+              autocomplete="off"
+              id="search-form"
+            >
               <label class="navigation__search__input">
                 <input
                   autocomplete="off"
@@ -44,15 +49,17 @@
         </div>
       </header>
 
-      <section id="result output">
+      <section class="gallery" id="result-output"></section>
 
+      <section id="media-player" class="media-player">
+        <button class="back">
+          <i data-feather="arrow-left"></i>
+        </button>
+        <div class="row">
+          <div class="big-loader"></div>
+        </div>
       </section>
     </main>
-    <script src="https://unpkg.com/feather-icons"></script>
     <script type="module" src="/src/scripts/main.ts"></script>
-
-    <script>
-      feather.replace();
-    </script>
   </body>
 </html>

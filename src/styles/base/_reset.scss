@@ -8,6 +8,18 @@
   box-sizing: border-box;
 }
 
+* {
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(var.$color-light);
+  }
+}
+
 html {
   font-size: 62.5%;
 }
@@ -32,3 +44,9 @@ main {
   position: relative;
 }
 
+a:link,
+a:visited {
+  text-decoration: underline;
+  color: rgb(var.$color-light);
+  text-decoration-color: rgb(var.$color-light);
+}

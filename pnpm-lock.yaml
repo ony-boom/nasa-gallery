@@ -1,7 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/feather-icons': ^4.29.1
   '@types/node': ^18.14.2
+  feather-icons: ^4.29.0
   prettier: ^2.8.4
   sass: ^1.58.3
   typescript: ^4.9.3
@@ -9,10 +11,12 @@ specifiers:
   wretch: ^2.5.1
 
 dependencies:
+  feather-icons: 4.29.0
   prettier: 2.8.4
   wretch: 2.5.1
 
 devDependencies:
+  '@types/feather-icons': 4.29.1
   '@types/node': 18.14.2
   sass: 1.58.3
   typescript: 4.9.5
@@ -218,6 +222,10 @@ packages:
     dev: true
     optional: true
 
+  /@types/feather-icons/4.29.1:
+    resolution: {integrity: sha512-8+PdenCN8UWTfyIHNaJdmk/oPg6zyw7S9kHtT8PdkmHEwfTHSrSWEHpNZJzbuWmZBXQKA/+dLVXjrloX9XixPg==}
+    dev: true
+
   /@types/node/18.14.2:
     resolution: {integrity: sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==}
     dev: true
@@ -257,6 +265,15 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
+
+  /core-js/3.29.0:
+    resolution: {integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==}
+    requiresBuild: true
+    dev: false
+
   /esbuild/0.16.17:
     resolution: {integrity: sha512-G8LEkV0XzDMNwXKgM0Jwu3nY3lSTwSGY6XbxM9cr9+s0T/qSV1q1JVPBGzm3dcjhCic9+emZDmMffkwgPeOeLg==}
     engines: {node: '>=12'}
@@ -286,6 +303,13 @@ packages:
       '@esbuild/win32-ia32': 0.16.17
       '@esbuild/win32-x64': 0.16.17
     dev: true
+
+  /feather-icons/4.29.0:
+    resolution: {integrity: sha512-Y7VqN9FYb8KdaSF0qD1081HCkm0v4Eq/fpfQYQnubpqi0hXx14k+gF9iqtRys1SIcTEi97xDi/fmsPFZ8xo0GQ==}
+    dependencies:
+      classnames: 2.3.2
+      core-js: 3.29.0
+    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}

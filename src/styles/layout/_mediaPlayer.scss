@@ -1,0 +1,65 @@
+@use "../abstract" as var;
+
+.media-player {
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  padding-block: 3.2rem;
+  background-color: rgb(var.$color-dark);
+  backdrop-filter: blur(0.8rem) contrast(115%);
+  animation: showMediaPlayer 0.3s ease-in both;
+  background-color: rgba(rgb(var.$color-dark), 0.2);
+
+  .back {
+    z-index: 60;
+    top: 1.8rem;
+    left: 3.2rem;
+    width: 6.4rem;
+    display: grid;
+    height: 6.4rem;
+    cursor: pointer;
+    font-size: 2.8rem;
+    position: absolute;
+    place-items: center;
+    background-color: rgb(var.$color-light);
+  }
+
+  .row {
+    gap: 2.4rem;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    overflow-x: auto;
+    position: relative;
+    scroll-snap-type: x mandatory;
+    background-color: rgb(var.$color-dark);
+
+    & > * {
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: 100%;
+      scroll-snap-align: start;
+
+      img,
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .big-loader {
+    &:is(.hidden) {
+      display: none;
+    }
+  }
+
+  &__visible {
+    display: flex;
+  }
+}

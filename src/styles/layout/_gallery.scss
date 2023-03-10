@@ -1,0 +1,121 @@
+@use "../abstract" as var;
+
+.gallery-row {
+  gap: 1rem;
+  display: flex;
+  padding: 0.5rem;
+  max-height: 50rem;
+  margin-inline: auto;
+
+  & + & {
+    margin-top: 1rem;
+  }
+
+  &__item {
+    flex-basis: 0;
+    font-size: 1em;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    transition: all 0.3s;
+    aspect-ratio: var(--ratio);
+    flex-grow: calc(var(--ratio));
+    border: solid 1px rgba(rgb(var.$color-light), 5);
+
+    &__title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      h3 {
+        font-size: 160%;
+        font-weight: 500;
+        line-height: 165%;
+        color: rgb(var.$color-light);
+
+        span {
+          display: block;
+          font-size: 1.4rem;
+          font-weight: normal;
+        }
+      }
+
+      p {
+        text-align: end;
+      }
+    }
+
+    &:hover {
+      border-color: rgb(var.$color-light);
+      & img {
+        scale: 105%;
+        opacity: 0.4;
+        filter: blur(5px);
+      }
+
+      & figcaption {
+        opacity: 1;
+      }
+
+      .playIcon {
+        opacity: 1;
+      }
+    }
+
+    figure {
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s;
+      }
+
+      figcaption {
+        top: 0;
+        opacity: 0;
+        width: 100%;
+        gap: 1.8rem;
+        height: 100%;
+        display: flex;
+        padding: 2.4rem;
+        overflow-y: auto;
+        line-height: 150%;
+        position: absolute;
+        overflow-x: hidden;
+        flex-direction: column;
+        color: rgb(var.$color-light);
+        justify-content: space-between;
+      }
+    }
+
+    .playIcon {
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      z-index: 20;
+      display: grid;
+      width: 6.2rem;
+      height: 6.2rem;
+      border-radius: 50%;
+      position: absolute;
+      transition: all .3s;
+      place-items: center;
+      padding-left: .4rem;
+      color: rgba(var.$color-dark);
+      transform: translate(-50%, -50%);
+      background-color: rgb(var.$color-light);
+    }
+  }
+}
+
+[data-size|="1 / 2"] {
+  .gallery-row__item {
+    &__title {
+      flex-direction: column;
+    }
+  }
+}
