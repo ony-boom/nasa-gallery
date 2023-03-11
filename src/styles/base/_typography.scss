@@ -1,8 +1,8 @@
-@use "../abstract" as var;
+@use "../abstract" as abstract;
 
 h1, h2, h3 {
   font-weight: bold;
-  font-family: var.$ff-main;
+  font-family: abstract.$ff-main;
 }
 
 h1 {
@@ -12,4 +12,8 @@ h1 {
 .error {
   color: #8c4a4a;
   font-weight: lighter;
+
+  @include abstract.mq(md) {
+    font-size: 1.4rem;
+  }
 }

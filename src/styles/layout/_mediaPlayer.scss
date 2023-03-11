@@ -1,4 +1,4 @@
-@use "../abstract" as var;
+@use "../abstract" as abstract;
 
 .media-player {
   top: 0;
@@ -9,34 +9,42 @@
   display: none;
   position: fixed;
   padding-block: 3.2rem;
-  background-color: rgb(var.$color-dark);
+  background-color: rgb(abstract.$color-dark);
   backdrop-filter: blur(0.8rem) contrast(115%);
   animation: showMediaPlayer 0.3s ease-in both;
-  background-color: rgba(rgb(var.$color-dark), 0.2);
+  background-color: rgba(rgb(abstract.$color-dark), 0.2);
+
+  @include abstract.mq(md) {
+    padding-block: 0;
+  }
 
   .back {
     z-index: 60;
     top: 1.8rem;
+    border: none;
     left: 3.2rem;
-    width: 6.4rem;
+    width: 6rem;
     display: grid;
-    height: 6.4rem;
+    height: 6rem;
     cursor: pointer;
     font-size: 2.8rem;
     position: absolute;
     place-items: center;
-    background-color: rgb(var.$color-light);
+    background-color: rgb(abstract.$color-light);
   }
 
   .row {
-    gap: 2.4rem;
     height: 100%;
     display: flex;
     flex-shrink: 0;
     overflow-x: auto;
     position: relative;
     scroll-snap-type: x mandatory;
-    background-color: rgb(var.$color-dark);
+    background-color: rgb(abstract.$color-dark);
+
+    @include abstract.mq(md) {
+      width: 100%;
+    }
 
     & > * {
       flex-grow: 1;
@@ -49,6 +57,10 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+
+        @include abstract.mq(md) {
+          object-fit: contain;
+        }
       }
     }
   }

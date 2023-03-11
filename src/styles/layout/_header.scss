@@ -1,24 +1,43 @@
-@use "../abstract" as var;
+@use "../abstract" as abstract;
 
 .header {
   top: 0;
   z-index: 20;
+  font-size: 100%;
   position: sticky;
-  padding-block: 3.2rem;
   max-height: 120rem;
+  padding-block: 3.2rem;
   backdrop-filter: blur(10px) saturate(50%);
   background: linear-gradient(180deg, rgba(5, 5, 5), rgba(5, 5, 5, .6));
+
+  @include abstract.mq(md) {
+    padding-block: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 5.1rem);
+  }
 }
 
 .navigation {
   display: flex;
+  position: relative;
   align-items: baseline;
   justify-content: space-between;
 
+  @include abstract.mq(md) {
+    gap: 2rem;
+  }
+
   &__search {
-    flex-basis: 30%;
+    flex-basis: 40%;
     font-size: 2rem;
     position: relative;
+
+    @include abstract.mq(md) {
+      flex-basis: auto;
+      font-size: 1.6rem;
+    }
 
     &__button {
       top: 50%;
@@ -42,7 +61,7 @@
       }
 
       &:disabled {
-        color: rgba(rgb(var.$color-light), .3);
+        color: rgba(rgb(abstract.$color-light), .3);
       }
     }
   }

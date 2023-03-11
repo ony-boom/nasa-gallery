@@ -1,0 +1,7 @@
+@mixin mq($breakpoint) {
+  @if($breakpoint == md) {
+    @media screen and (width <= 50em) {
+      @content
+    }
+  }
+}

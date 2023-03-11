@@ -1,4 +1,4 @@
-import { replace } from "feather-icons";
+import featherIcons from "feather-icons";
 import { Collection, Gallery, MediaType } from "./types";
 import { MAX_ROW_IMAGE_COUNT, userLocale } from "./config";
 import { getRandomValueFromArray, isTrue } from "./utils";
@@ -111,7 +111,7 @@ export function setUi() {
     searchBtn.disabled = !(value && value.trim());
   });
 
-  replace();
+  featherIcons.replace();
 }
 
 function getRandomRatio() {
@@ -179,7 +179,7 @@ function createGalleryColumn(data: Gallery[]) {
 
     if (datum.isVideo) {
       collectionLinkElement.append(playIcon);
-      replace({
+      featherIcons.replace({
         stroke: "#000",
       });
     }
