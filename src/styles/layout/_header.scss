@@ -10,7 +10,7 @@
   backdrop-filter: blur(10px) saturate(50%);
   background: linear-gradient(180deg, rgba(5, 5, 5), rgba(5, 5, 5, .6));
 
-  @include abstract.mq(md) {
+  @include abstract.mq(sm) {
     padding-block: 2rem;
   }
 
@@ -25,8 +25,9 @@
   align-items: baseline;
   justify-content: space-between;
 
-  @include abstract.mq(md) {
-    gap: 2rem;
+  @include abstract.mq(sm) {
+    gap: 2.4rem;
+    align-items: center;
   }
 
   &__search {
@@ -34,9 +35,9 @@
     font-size: 2rem;
     position: relative;
 
-    @include abstract.mq(md) {
+    @include abstract.mq(sm) {
       flex-basis: auto;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
     }
 
     &__button {
@@ -50,6 +51,13 @@
       transition: color .3s;
       transform: translateY(-50%);
       background-color: transparent;
+
+      svg {
+        @include abstract.mq(sm) {
+          height: 1.6rem;
+          width: 1.6rem;
+        }
+      }
 
       &--hidden {
         opacity: 0;

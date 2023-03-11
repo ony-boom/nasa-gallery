@@ -13,7 +13,7 @@ h1 {
   color: #8c4a4a;
   font-weight: lighter;
 
-  @include abstract.mq(md) {
+  @include abstract.mq(sm) {
     font-size: 1.4rem;
   }
 }

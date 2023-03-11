@@ -7,14 +7,14 @@
   max-height: 50rem;
   margin-inline: auto;
 
-  @include abstract.mq(md) {
+  @include abstract.mq(sm) {
     flex-direction: column;
   }
 
   & + & {
     margin-top: 1rem;
 
-    @include abstract.mq(md) {
+    @include abstract.mq(sm) {
       margin-top: .1rem;
     }
   }
@@ -31,7 +31,7 @@
     flex-grow: calc(var(--ratio));
     border: solid 1px rgba(rgb(abstract.$color-light), 5);
 
-    @include abstract.mq(md) {
+    @include abstract.mq(sm) {
       flex-basis: 100%;
       aspect-ratio: 16 / 9;
     }
@@ -40,7 +40,7 @@
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      @include abstract.mq(md) {
+      @include abstract.mq(sm) {
         flex-direction: column;
       }
 
@@ -50,7 +50,7 @@
         line-height: 165%;
         color: rgb(abstract.$color-light);
 
-        @include abstract.mq(md) {
+        @include abstract.mq(sm) {
           font-size: 1em;
         }
 
@@ -111,7 +111,7 @@
         color: rgb(abstract.$color-light);
         justify-content: space-between;
 
-        @include abstract.mq(md) {
+        @include abstract.mq(sm) {
           padding: 1rem;
         }
       }

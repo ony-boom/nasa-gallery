@@ -14,7 +14,7 @@
   animation: showMediaPlayer 0.3s ease-in both;
   background-color: rgba(rgb(abstract.$color-dark), 0.2);
 
-  @include abstract.mq(md) {
+  @include abstract.mq(sm) {
     padding-block: 0;
   }
 
@@ -31,6 +31,11 @@
     position: absolute;
     place-items: center;
     background-color: rgb(abstract.$color-light);
+
+    @include abstract.mq(sm) {
+      height: 4rem;
+      width: 4rem;
+    }
   }
 
   .row {
@@ -42,7 +47,7 @@
     scroll-snap-type: x mandatory;
     background-color: rgb(abstract.$color-dark);
 
-    @include abstract.mq(md) {
+    @include abstract.mq(sm) {
       width: 100%;
     }
 
@@ -58,7 +63,7 @@
         height: 100%;
         object-fit: cover;
 
-        @include abstract.mq(md) {
+        @include abstract.mq(sm) {
           object-fit: contain;
         }
       }
