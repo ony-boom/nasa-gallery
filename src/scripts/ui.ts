@@ -3,9 +3,9 @@ import { Collection, Gallery, MediaType } from "./types";
 import { MAX_ROW_IMAGE_COUNT, userLocale } from "./config";
 import { getRandomValueFromArray, isTrue } from "./utils";
 import {
-  getVideoCollectionMetadata,
-  getImageCollectionData,
-  getCollections,
+	getVideoCollectionMetadata,
+	getImageCollectionData,
+	getCollections,
 } from "./api";
 
 const searchInput = document.getElementById("search") as HTMLInputElement;
@@ -19,140 +19,143 @@ const bigLoader = document.querySelector<HTMLDivElement>(".big-loader");
 const backButton = document.querySelector<HTMLButtonElement>(".back");
 
 export const elements = {
-  searchInput,
-  searchBtn,
-  searchForm,
+	searchInput,
+	searchBtn,
+	searchForm,
 };
 
 function hideMediaPlayer() {
-  mediaPlayerContent.innerHTML = "";
+	mediaPlayerContent.innerHTML = "";
 
-  mediaPlayer.classList.remove("media-player__visible");
+	mediaPlayer.classList.remove("media-player__visible");
 }
 
 export async function showMediaPlayer(event: Event) {
-  event.preventDefault();
+	event.preventDefault();
 
-  mediaPlayer.classList.add("media-player__visible");
+	mediaPlayer.classList.add("media-player__visible");
 
-  const linkElement = event.currentTarget as HTMLAnchorElement;
+	const linkElement = event.currentTarget as HTMLAnchorElement;
 
-  const collectionIsVideo = linkElement.dataset.isVideo;
+	const collectionIsVideo = linkElement.dataset.isVideo;
 
-  const collection = await getCollections(linkElement.href);
+	const collection = await getCollections(linkElement.href);
 
-  toggleBigLoader();
+	toggleBigLoader();
 
-  const imageContainer = document.createElement("div");
-  imageContainer.className = ".media-player__element";
+	const imageContainer = document.createElement("div");
+	imageContainer.className = ".media-player__element";
 
-  if (isTrue(collectionIsVideo)) {
-    const { videoData } = await getVideoCollectionMetadata(collection);
-    const videoElement = document.createElement("video");
-    videoElement.crossOrigin = "anonymous";
+	if (isTrue(collectionIsVideo)) {
+		const { videoData } = await getVideoCollectionMetadata(collection);
+		const videoElement = document.createElement("video");
+		videoElement.crossOrigin = "anonymous";
 
-    if (videoData.subtitle) {
-      const subtitleElement = document.createElement("track");
+		if (videoData.subtitle) {
+			const subtitleElement = document.createElement("track");
 
-      subtitleElement.label = "English";
-      subtitleElement.kind = "subtitles";
-      subtitleElement.srclang = "en";
-      subtitleElement.default = true;
-      subtitleElement.src = videoData.subtitle;
+			subtitleElement.label = "English";
+			subtitleElement.kind = "subtitles";
+			subtitleElement.srclang = "en";
+			subtitleElement.default = true;
+			subtitleElement.src = videoData.subtitle;
 
-      videoElement.append(subtitleElement);
-    }
+			videoElement.append(subtitleElement);
+		}
 
-    videoElement.controls = true;
+		videoElement.poster =
+			videoData.links.find((link) => link.includes("thumb")) || "";
 
-    for (const source of videoData.links) {
-      const sourceElement = document.createElement("source");
-      sourceElement.src = source;
-      videoElement.append(sourceElement);
-    }
-    imageContainer.append(videoElement);
-  } else {
-    const { images } = await getImageCollectionData(collection);
+		videoElement.controls = true;
 
-    const imageElement = document.createElement("img");
+		for (const source of videoData.links) {
+			const sourceElement = document.createElement("source");
+			sourceElement.src = source;
+			videoElement.append(sourceElement);
+		}
+		imageContainer.append(videoElement);
+	} else {
+		const { images } = await getImageCollectionData(collection);
 
-    imageElement.src = images;
-    imageContainer.append(imageElement);
-  }
-  mediaPlayerContent.append(imageContainer);
+		const imageElement = document.createElement("img");
+
+		imageElement.src = images;
+		imageContainer.append(imageElement);
+	}
+	mediaPlayerContent.append(imageContainer);
 }
 
 function toggleBigLoader() {
-  bigLoader?.classList.toggle("hidden");
+	bigLoader?.classList.toggle("hidden");
 }
 
 export function showError(errType: "OFFLINE") {
-  switch (errType) {
-    case "OFFLINE":
-      resultOutput.innerHTML = `
+	switch (errType) {
+		case "OFFLINE":
+			resultOutput.innerHTML = `
         <div class="row error">
             <h2>
                 You are offline, can't fetch data!
             </h2>
         </div>
       `;
-  }
+	}
 }
 
 export function toggleLoader() {
-  if (!loader) return;
-  loader.classList.toggle("loader--visible");
-  searchBtn.classList.toggle("navigation__search__button--hidden");
+	if (!loader) return;
+	loader.classList.toggle("loader--visible");
+	searchBtn.classList.toggle("navigation__search__button--hidden");
 }
 
 export function setUi() {
-  searchInput.addEventListener("input", (event) => {
-    const value = (event.target as HTMLInputElement)?.value;
-    searchBtn.disabled = !(value && value.trim());
-  });
+	searchInput.addEventListener("input", (event) => {
+		const value = (event.target as HTMLInputElement)?.value;
+		searchBtn.disabled = Boolean(!value?.trim());
+	});
 
-  featherIcons.replace();
+	featherIcons.replace();
 }
 
 function getRandomRatio() {
-  const ratioList = ["1 / 2", "16 / 9", "1 / 1"];
-  return getRandomValueFromArray(ratioList);
+	const ratioList = ["1 / 2", "16 / 9", "1 / 1"];
+	return getRandomValueFromArray(ratioList);
 }
 
 function createGalleryColumn(data: Gallery[]) {
-  const galleryColumnElement = document.createElement("div");
-  galleryColumnElement.className = "gallery-row";
+	const galleryColumnElement = document.createElement("div");
+	galleryColumnElement.className = "gallery-row";
 
-  for (const datum of data) {
-    const collectionLinkElement = document.createElement("a");
-    const collectionFigureElement = document.createElement("figure");
-    const collectionFigCaptionElement = document.createElement("figcaption");
-    const collectionImagePreviewElement = document.createElement("img");
+	for (const datum of data) {
+		const collectionLinkElement = document.createElement("a");
+		const collectionFigureElement = document.createElement("figure");
+		const collectionFigCaptionElement = document.createElement("figcaption");
+		const collectionImagePreviewElement = document.createElement("img");
 
-    const playIcon = document.createElement("div");
+		const playIcon = document.createElement("div");
 
-    const randomRatio = getRandomRatio();
+		const randomRatio = getRandomRatio();
 
-    collectionLinkElement.setAttribute("style", `--ratio: ${randomRatio}`);
-    collectionLinkElement.dataset.size = randomRatio;
-    collectionLinkElement.dataset.isVideo = String(datum.isVideo);
+		collectionLinkElement.setAttribute("style", `--ratio: ${randomRatio}`);
+		collectionLinkElement.dataset.size = randomRatio;
+		collectionLinkElement.dataset.isVideo = String(datum.isVideo);
 
-    collectionLinkElement.href = datum.collectionLink;
-    collectionLinkElement.target = "_blank";
-    collectionLinkElement.className = "gallery-row__item";
+		collectionLinkElement.href = datum.collectionLink;
+		collectionLinkElement.target = "_blank";
+		collectionLinkElement.className = "gallery-row__item";
 
-    collectionImagePreviewElement.loading = "lazy";
-    collectionFigureElement.className = "gallery__thumb";
-    collectionImagePreviewElement.className = "gallery__image";
-    collectionFigCaptionElement.className = "gallery__caption";
-    playIcon.className = "playIcon";
+		collectionImagePreviewElement.loading = "lazy";
+		collectionFigureElement.className = "gallery__thumb";
+		collectionImagePreviewElement.className = "gallery__image";
+		collectionFigCaptionElement.className = "gallery__caption";
+		playIcon.className = "playIcon";
 
-    playIcon.innerHTML = `
+		playIcon.innerHTML = `
       <i data-feather="play"></i>
     `;
 
-    collectionImagePreviewElement.src = datum.previewImage;
-    collectionFigCaptionElement.innerHTML = `
+		collectionImagePreviewElement.src = datum.previewImage;
+		collectionFigCaptionElement.innerHTML = `
       <div class="gallery-row__item__title">
         <h3>
             ${datum.title}
@@ -160,10 +163,10 @@ function createGalleryColumn(data: Gallery[]) {
         </h3>
         <p>
           ${Intl.DateTimeFormat(userLocale, {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          }).format(new Date(datum.date_created))}
+			day: "numeric",
+			month: "long",
+			year: "numeric",
+		}).format(new Date(datum.date_created))}
         </p>
       </div>
       
@@ -172,60 +175,60 @@ function createGalleryColumn(data: Gallery[]) {
       </p>
     `;
 
-    collectionFigureElement.append(collectionImagePreviewElement);
-    collectionFigureElement.append(collectionFigCaptionElement);
-    collectionLinkElement.append(collectionFigureElement);
-    galleryColumnElement.append(collectionLinkElement);
+		collectionFigureElement.append(collectionImagePreviewElement);
+		collectionFigureElement.append(collectionFigCaptionElement);
+		collectionLinkElement.append(collectionFigureElement);
+		galleryColumnElement.append(collectionLinkElement);
 
-    if (datum.isVideo) {
-      collectionLinkElement.append(playIcon);
-      featherIcons.replace({
-        stroke: "#000",
-      });
-    }
+		if (datum.isVideo) {
+			collectionLinkElement.append(playIcon);
+			featherIcons.replace({
+				stroke: "#000",
+			});
+		}
 
-    collectionLinkElement.title = "Go to collection";
+		collectionLinkElement.title = "Go to collection";
 
-    collectionLinkElement.addEventListener("click", showMediaPlayer);
-  }
+		collectionLinkElement.addEventListener("click", showMediaPlayer);
+	}
 
-  return galleryColumnElement;
+	return galleryColumnElement;
 }
 
 export function showResult(collection: Collection) {
-  resultOutput.innerHTML = "";
+	resultOutput.innerHTML = "";
 
-  const { items } = collection;
-  let temporaryGallery: Gallery[] = [];
+	const { items } = collection;
+	let temporaryGallery: Gallery[] = [];
 
-  itemLoop: for (const item of items) {
-    if (temporaryGallery.length === MAX_ROW_IMAGE_COUNT) {
-      const galleryColumn = createGalleryColumn(temporaryGallery);
-      resultOutput.append(galleryColumn);
-      temporaryGallery.splice(0, temporaryGallery.length);
-    }
+	itemLoop: for (const item of items) {
+		if (temporaryGallery.length === MAX_ROW_IMAGE_COUNT) {
+			const galleryColumn = createGalleryColumn(temporaryGallery);
+			resultOutput.append(galleryColumn);
+			temporaryGallery.splice(0, temporaryGallery.length);
+		}
 
-    let isVideo = false;
-    let collectionInfo: Gallery | undefined;
-    const previewImage = item.links?.find(
-      (link) => link.rel === "preview"
-    )!.href;
+		let isVideo = false;
+		let collectionInfo: Gallery | undefined;
+		const previewImage = item.links?.find(
+			(link) => link.rel === "preview",
+		)!.href;
 
-    for (const mediaData of item.data) {
-      if (mediaData.media_type === MediaType.Audio) continue itemLoop;
+		for (const mediaData of item.data) {
+			if (mediaData.media_type === MediaType.Audio) continue itemLoop;
 
-      isVideo = mediaData.media_type === MediaType.Video;
+			isVideo = mediaData.media_type === MediaType.Video;
 
-      collectionInfo = {
-        ...mediaData,
-        collectionLink: item.href,
-        isVideo,
-        previewImage,
-      };
-    }
+			collectionInfo = {
+				...mediaData,
+				collectionLink: item.href,
+				isVideo,
+				previewImage,
+			};
+		}
 
-    temporaryGallery.push(collectionInfo!);
-  }
+		temporaryGallery.push(collectionInfo!);
+	}
 }
 
 backButton?.addEventListener("click", hideMediaPlayer);
