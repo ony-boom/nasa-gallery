@@ -6,7 +6,7 @@
   font-size: 100%;
   position: sticky;
   max-height: 120rem;
-  padding-block: 3.2rem;
+  padding-block: 2.4rem;
   backdrop-filter: blur(10px) saturate(50%);
   background: linear-gradient(180deg, rgba(5, 5, 5), rgba(5, 5, 5, .6));
 
@@ -15,7 +15,7 @@
   }
 
   h1 {
-    font-size: clamp(1.8rem, 4vw, 5.1rem);
+    font-size: clamp(1.8rem, 4vw, 3.8rem);
   }
 }
 
