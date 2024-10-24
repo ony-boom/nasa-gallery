@@ -1,6 +1,6 @@
 import { search } from "./api";
 import { searchList } from "./config";
-import { Collections, FormValue } from "./types";
+import { Collections } from "./types";
 import { setUi, elements, toggleLoader, showResult } from "./ui";
 import { getRandomValueFromArray } from "./utils";
 
@@ -12,11 +12,12 @@ async function handleSearch(event: Event) {
   event.preventDefault();
 
   const formData = new FormData(event.target as HTMLFormElement);
+  const qyery = formData.get("query") as string;
 
-  // @ts-ignore
-  const formProps = Object.fromEntries(formData) as FormValue;
+  const searchResult = await search<Collections>(qyery);
 
-  const searchResult = await search<Collections>(formProps.query);
+  searchList.append(qyery);
+
   toggleLoader();
 
   showResult(searchResult.collection);
@@ -25,7 +26,7 @@ async function handleSearch(event: Event) {
 async function handleLoad() {
   toggleLoader();
 
-  const loadQuery = getRandomValueFromArray(searchList);
+  const loadQuery = getRandomValueFromArray(searchList.get());
   const loadSearchResult = await search<Collections>(loadQuery);
 
   toggleLoader();

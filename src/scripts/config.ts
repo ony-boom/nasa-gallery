@@ -1,4 +1,4 @@
-const USER_SEARCH_LIST_LOCALE_STORAGE_KEY = "default_nasa_api";
+export const USER_SEARCH_LIST_LOCALE_STORAGE_KEY = "default_nasa_api";
 
 const defaultSearchList = [
   "Earth",
@@ -27,7 +27,21 @@ function getDefaultSearchList() {
   return defaultList;
 }
 
-export const searchList = getDefaultSearchList();
+export const searchList = {
+  get: getDefaultSearchList,
+  set: (list: string[]) => {
+    localStorage.setItem(
+      USER_SEARCH_LIST_LOCALE_STORAGE_KEY,
+      JSON.stringify(Array.from(new Set(list)))
+    );
+  },
+  append: (value: string) => {
+    const list = searchList.get();
+    list.push(value);
+    searchList.set(list);
+  },
+};
+
 export const MAX_ROW_IMAGE_COUNT = 2;
 
 export const userLocale =
