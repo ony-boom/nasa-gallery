@@ -9,16 +9,16 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/feather-icons": "^4.29.1",
-    "@types/node": "^18.14.2",
-    "sass": "^1.58.3",
-    "typescript": "^4.9.3",
-    "vite": "^4.1.0"
+    "@types/feather-icons": "^4.29.4",
+    "@types/node": "^24.0.3",
+    "sass": "^1.89.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
   },
   "dependencies": {
-    "feather-icons": "^4.29.0",
-    "prettier": "^2.8.4",
-    "wretch": "^2.5.1"
+    "feather-icons": "^4.29.2",
+    "prettier": "^3.5.3",
+    "wretch": "^2.11.0"
   },
-  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
+  "packageManager": "pnpm@10.12.1"
 }

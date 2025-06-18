@@ -12,6 +12,10 @@
 
   @include abstract.mq(sm) {
     padding-block: 2rem;
+
+    .row {
+      padding-inline: 0.5rem;
+    }
   }
 
   h1 {
